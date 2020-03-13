@@ -1,0 +1,48 @@
+/** react-select */
+
+.compelo-select > div {
+  border-radius: 0 !important;
+  font-size: 14px;
+}
+
+.compelo-select__control {
+  box-shadow: none !important;
+  border-color: lightgray !important;
+}
+.compelo-select__control:hover,
+.compelo-select__control--menu-is-focused,
+.compelo-select__control--menu-is-open {
+  border-color: black !important;
+}
+
+.compelo-select__menu-list {
+  padding-bottom: 0 !important;
+  padding-top: 0 !important;
+}
+
+/** form-controls */
+
+.form-control {
+  border-radius: 0;
+  box-shadow: none !important;
+}
+
+.form-control:hover,
+.form-control:focus {
+  border-color: black;
+}
+
+.invalid {
+  border-color: red;
+}
+
+/** buttons */
+
+.btn {
+  border: none;
+  border-radius: 2px !important;
+}
+
+.btn-primary {
+  background-color: navy;
+}
