@@ -40,11 +40,41 @@ type Props = {
   gameId: number;
 };
 
+const deltaForTeam = (
+  team: Partial<Team>,
+  ratings: Partial<Rating>[],
+): number | null => {
+  const rating = ratings.find(
+    rating => rating.player_id === team?.appearances?.[0].player_id,
+  );
+  if (rating) {
+    return rating.rating! - rating.rating_before!;
+  }
+  return null;
+};
+
 const MatchList = (props: Props) => {
   const matchData = useSubscription<
     MatchesSubscription,
     MatchesSubscriptionVariables
   >(MATCH_LIST, { variables: { gameId: props.gameId } });
+
+  const teams = (teams: Partial<Team>[], ratings: Partial<Rating>[]) => {
+    ratings.map(value => value.player_id);
+    return teams.map(team => (
+      <div key={team.id} className={'col text-center'}>
+        <div>
+          {team?.appearances?.map(value => value.player.name).join(', ')}
+        </div>
+        <div>
+          <small className={'text-muted'}>Score: </small>
+          <small>{team.score}</small>
+          <small className={'text-muted'}> Rating: </small>
+          <small>{deltaForTeam(team, ratings)}</small>
+        </div>
+      </div>
+    ));
+  };
 
   const matches = (matchData?.data?.match ?? []).map(match => (
     <div key={match.uuid} className={'mt-1 row'}>
@@ -63,34 +93,6 @@ const MatchList = (props: Props) => {
       {matches}
     </div>
   );
-};
-
-const teams = (teams: Partial<Team>[], ratings: Partial<Rating>[]) => {
-  ratings.map(value => value.player_id);
-  return teams.map(team => (
-    <div key={team.id} className={'col text-center'}>
-      <div>{team?.appearances?.map(value => value.player.name).join(', ')}</div>
-      <div>
-        <small className={'text-muted'}>Score: </small>
-        <small>{team.score}</small>
-        <small className={'text-muted'}> Rating: </small>
-        <small>{deltaForTeam(team, ratings)}</small>
-      </div>
-    </div>
-  ));
-};
-
-const deltaForTeam = (
-  team: Partial<Team>,
-  ratings: Partial<Rating>[],
-): number | null => {
-  const rating = ratings.find(
-    rating => rating.player_id === team?.appearances?.[0].player_id,
-  );
-  if (rating) {
-    return rating.rating! - rating.rating_before!;
-  }
-  return null;
 };
 
 export default MatchList;

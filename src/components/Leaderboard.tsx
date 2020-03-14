@@ -23,6 +23,10 @@ const LEADERBOARD = gql`
   }
 `;
 
+const ratingOf = (player: Partial<Player>) => {
+  return player?.ratings?.[0]?.rating ?? 1500;
+};
+
 type Props = {
   gameId: number;
 };
@@ -48,10 +52,6 @@ const Leaderboard = (props: Props) => {
       {players}
     </div>
   );
-};
-
-const ratingOf = (player: Partial<Player>) => {
-  return player?.ratings?.[0]?.rating ?? 1500;
 };
 
 export default Leaderboard;

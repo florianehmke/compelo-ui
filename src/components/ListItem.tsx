@@ -12,6 +12,22 @@ interface ListItem {
   name: string;
 }
 
+const conditionalStyles = (selected: boolean, hovered: boolean) => {
+  return {
+    container: {
+      backgroundColor: hovered ? '#ededed' : undefined,
+    },
+    listItem: {
+      cursor: 'pointer',
+      textDecoration: selected ? 'underline' : undefined,
+      textAlign: 'center' as 'center',
+    },
+    deleteBtn: {
+      cursor: 'pointer',
+    },
+  };
+};
+
 const ListItem = (props: Props) => {
   const [hovered, setHovered] = useState(false);
 
@@ -56,22 +72,6 @@ const ListItem = (props: Props) => {
       ) : null}
     </div>
   );
-};
-
-const conditionalStyles = (selected: boolean, hovered: boolean) => {
-  return {
-    container: {
-      backgroundColor: hovered ? '#ededed' : undefined,
-    },
-    listItem: {
-      cursor: 'pointer',
-      textDecoration: selected ? 'underline' : undefined,
-      textAlign: 'center' as 'center',
-    },
-    deleteBtn: {
-      cursor: 'pointer',
-    },
-  };
 };
 
 export default ListItem;

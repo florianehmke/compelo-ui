@@ -2,7 +2,7 @@ import { useMutation, useSubscription } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import * as React from 'react';
 import { useState } from 'react';
-import { FormContext, useForm } from 'react-hook-form';
+import { FieldValues, FormContext, useForm } from 'react-hook-form';
 import { v4 as uuidv4 } from 'uuid';
 import PlayerSelect from '../controls/PlayerSelect';
 import { PLAYERS_SUBSCRIPTION } from '../shared/gql/players-subscription';
@@ -30,6 +30,49 @@ const INSERT_MATCH = gql`
     }
   }
 `;
+
+const toMatchMutationVariables = (
+  formData: FormData,
+  gameId: number,
+  uuid: string = uuidv4(),
+): InsertMatchMutationVariables => {
+  const teams = formData.teams.map(
+    ({ score, players }) =>
+      ({
+        score: parseInt(score, 10),
+        match_uuid: uuid,
+        result: Result_Type_Enum.Draw,
+        appearances: {
+          data: players
+            .map(value => value.player.id)
+            .map(player_id => ({ player_id })),
+        },
+      } as Team_Insert_Input),
+  );
+
+  const highScore = teams
+    .map(team => team.score ?? 0)
+    .reduce((a, b) => Math.max(a, b));
+
+  const lowestScore = teams
+    .map(team => team.score ?? 0)
+    .reduce((a, b) => Math.min(a, b));
+
+  if (lowestScore !== highScore) {
+    teams.forEach(
+      team =>
+        (team.result =
+          team.score === highScore
+            ? Result_Type_Enum.Win
+            : Result_Type_Enum.Loss),
+    );
+  }
+
+  return {
+    match: { uuid, game_id: gameId },
+    teams: teams,
+  };
+};
 
 interface FormData {
   teams: {
@@ -60,10 +103,11 @@ const CreateMatchForm = (props: Props) => {
   const form = useForm();
 
   const onChange = () => form.triggerValidation().then(setValid);
-  const onSubmit = (data: any) =>
+  const onSubmit = (data: FieldValues) => {
     addMatch({
-      variables: toMatchMutationVariables(data, props.gameId),
-    }) as any;
+      variables: toMatchMutationVariables(data as FormData, props.gameId),
+    });
+  };
 
   return (
     <div className={'container border shadow mt-3 p-3'}>
@@ -115,50 +159,6 @@ const CreateMatchForm = (props: Props) => {
       </FormContext>
     </div>
   );
-};
-
-const toMatchMutationVariables = (
-  formData: FormData,
-  gameId: number,
-): InsertMatchMutationVariables => {
-  const uuid = uuidv4();
-
-  const teams = formData.teams.map(
-    ({ score, players }) =>
-      ({
-        score: parseInt(score, 10),
-        match_uuid: uuid,
-        result: Result_Type_Enum.Draw,
-        appearances: {
-          data: players
-            .map(value => value.player.id)
-            .map(player_id => ({ player_id })),
-        },
-      } as Team_Insert_Input),
-  );
-
-  const highScore = teams
-    .map(team => team.score ?? 0)
-    .reduce((a, b) => Math.max(a, b));
-
-  const lowestScore = teams
-    .map(team => team.score ?? 0)
-    .reduce((a, b) => Math.min(a, b));
-
-  if (lowestScore !== highScore) {
-    teams.forEach(
-      team =>
-        (team.result =
-          team.score === highScore
-            ? Result_Type_Enum.Win
-            : Result_Type_Enum.Loss),
-    );
-  }
-
-  return {
-    match: { uuid, game_id: gameId },
-    teams: teams,
-  };
 };
 
 export default CreateMatchForm;
