@@ -5,10 +5,10 @@ module.exports = {
   },
   extends: [
     'plugin:react/recommended',
+    'eslint:recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
-    'prettier',
-    'prettier/@typescript-eslint',
+    'plugin:prettier/recommended',
   ],
   globals: {
     Atomics: 'readonly',
@@ -22,7 +22,7 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-  plugins: ['react', 'prettier', '@typescript-eslint'],
+  plugins: ['react', '@typescript-eslint'],
   ignorePatterns: ['build', 'src/types/generated/', 'node_modules/'],
   rules: {
     '@typescript-eslint/interface-name-prefix': 'off',

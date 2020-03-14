@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "author": "Florian Ehmke",
   "license": "MIT",
+  "repository": "https://github.com/florianehmke/compelo-ui",
   "scripts": {
     "build": "react-scripts build",
     "build:ci": "run-s verify build",
