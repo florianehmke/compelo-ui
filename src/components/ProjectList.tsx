@@ -1,15 +1,15 @@
-import { useMutation, useSubscription } from "@apollo/react-hooks";
-import gql from "graphql-tag";
-import React from "react";
-import { useHistory } from "react-router-dom";
+import { useMutation, useSubscription } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 
-import ListItem from "../components/ListItem";
+import ListItem from '../components/ListItem';
 import {
   DeleteProjectMutation,
   DeleteProjectMutationVariables,
   ProjectsSubscription,
-  ProjectsSubscriptionVariables
-} from "../types/generated/graphql";
+  ProjectsSubscriptionVariables,
+} from '../types/generated/graphql';
 
 export const PROJECTS_SUBSCRIPTION = gql`
   subscription Projects {
@@ -50,8 +50,8 @@ const ProjectList = () => {
   ));
 
   return (
-    <div className={"container border shadow mt-3 p-3"}>
-      <h5 className={"mb-3 border-bottom"}>Select Project</h5>
+    <div className={'container border shadow mt-3 p-3'}>
+      <h5 className={'mb-3 border-bottom'}>Select Project</h5>
       {projects}
     </div>
   );

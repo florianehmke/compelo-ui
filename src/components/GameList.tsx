@@ -8,7 +8,7 @@ import {
   DeleteGameMutation,
   DeleteGameMutationVariables,
   GamesSubscription,
-  GamesSubscriptionVariables
+  GamesSubscriptionVariables,
 } from '../types/generated/graphql';
 
 export const GAMES_SUBSCRIPTION = gql`

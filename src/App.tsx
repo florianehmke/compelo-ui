@@ -1,14 +1,14 @@
-import { ApolloProvider } from "@apollo/react-hooks";
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { ApolloProvider } from '@apollo/react-hooks';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import createApolloClient from "./apollo";
+import createApolloClient from './apollo';
 
-import Header from "./components/Header";
+import Header from './components/Header';
 
-import Dashboard from "./views/Dashboard";
-import GameView from "./views/GameView";
-import ProjectView from "./views/ProjectView";
+import Dashboard from './views/Dashboard';
+import GameView from './views/GameView';
+import ProjectView from './views/ProjectView';
 
 const apolloClient = createApolloClient();
 

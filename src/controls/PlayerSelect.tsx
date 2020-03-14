@@ -22,7 +22,7 @@ const PlayerSelect = (props: Props) => {
     .map(player => ({
       value: player.id!,
       label: player.name!,
-      player
+      player,
     }));
 
   return (

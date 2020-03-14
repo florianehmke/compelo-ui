@@ -4,7 +4,7 @@ import * as React from 'react';
 import {
   LeaderboardSubscription,
   LeaderboardSubscriptionVariables,
-  Player
+  Player,
 } from '../types/generated/graphql';
 
 const LEADERBOARD = gql`

@@ -13,7 +13,7 @@ import {
   PlayersSubscription,
   PlayersSubscriptionVariables,
   Result_Type_Enum,
-  Team_Insert_Input
+  Team_Insert_Input,
 } from '../types/generated/graphql';
 
 const INSERT_MATCH = gql`
@@ -62,7 +62,7 @@ const CreateMatchForm = (props: Props) => {
   const onChange = () => form.triggerValidation().then(setValid);
   const onSubmit = (data: any) =>
     addMatch({
-      variables: toMatchMutationVariables(data, props.gameId)
+      variables: toMatchMutationVariables(data, props.gameId),
     }) as any;
 
   return (
@@ -119,7 +119,7 @@ const CreateMatchForm = (props: Props) => {
 
 const toMatchMutationVariables = (
   formData: FormData,
-  gameId: number
+  gameId: number,
 ): InsertMatchMutationVariables => {
   const uuid = uuidv4();
 
@@ -132,9 +132,9 @@ const toMatchMutationVariables = (
         appearances: {
           data: players
             .map(value => value.player.id)
-            .map(player_id => ({ player_id }))
-        }
-      } as Team_Insert_Input)
+            .map(player_id => ({ player_id })),
+        },
+      } as Team_Insert_Input),
   );
 
   const highScore = teams
@@ -151,13 +151,13 @@ const toMatchMutationVariables = (
         (team.result =
           team.score === highScore
             ? Result_Type_Enum.Win
-            : Result_Type_Enum.Loss)
+            : Result_Type_Enum.Loss),
     );
   }
 
   return {
     match: { uuid, game_id: gameId },
-    teams: teams
+    teams: teams,
   };
 };
 

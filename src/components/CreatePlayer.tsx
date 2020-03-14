@@ -1,11 +1,11 @@
-import { useMutation } from "@apollo/react-hooks";
-import gql from "graphql-tag";
-import React, { useState } from "react";
+import { useMutation } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
+import React, { useState } from 'react';
 
 import {
   CreatePlayerMutation,
-  CreatePlayerMutationVariables
-} from "../types/generated/graphql";
+  CreatePlayerMutationVariables,
+} from '../types/generated/graphql';
 
 const CREATE_PLAYER = gql`
   mutation CreatePlayer($name: String!, $projectId: Int!) {
@@ -28,8 +28,8 @@ const CreatePlayer = (props: Props) => {
   >(CREATE_PLAYER);
 
   return (
-    <div className={"container shadow border mt-3 p-3"}>
-      <h5 className={"mb-3 border-bottom"}>Create Player</h5>
+    <div className={'container shadow border mt-3 p-3'}>
+      <h5 className={'mb-3 border-bottom'}>Create Player</h5>
       <div>
         <form
           onSubmit={e => {
@@ -37,19 +37,19 @@ const CreatePlayer = (props: Props) => {
             createPlayer({
               variables: {
                 projectId: props.projectId,
-                name: player!
-              }
+                name: player!,
+              },
             });
           }}
         >
           <input
             minLength={3}
             required={true}
-            type={"text"}
+            type={'text'}
             value={player}
             onChange={e => setPlayer(e.target.value)}
           />
-          <button type="submit" className={"ml-3"}>
+          <button type="submit" className={'ml-3'}>
             Create Game
           </button>
         </form>

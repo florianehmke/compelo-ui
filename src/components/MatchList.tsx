@@ -7,7 +7,7 @@ import {
   MatchesSubscription,
   MatchesSubscriptionVariables,
   Rating,
-  Team
+  Team,
 } from '../types/generated/graphql';
 
 const MATCH_LIST = gql`
@@ -82,10 +82,10 @@ const teams = (teams: Partial<Team>[], ratings: Partial<Rating>[]) => {
 
 const deltaForTeam = (
   team: Partial<Team>,
-  ratings: Partial<Rating>[]
+  ratings: Partial<Rating>[],
 ): number | null => {
   const rating = ratings.find(
-    rating => rating.player_id === team?.appearances?.[0].player_id
+    rating => rating.player_id === team?.appearances?.[0].player_id,
   );
   if (rating) {
     return rating.rating! - rating.rating_before!;
