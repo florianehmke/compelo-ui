@@ -15,16 +15,16 @@ interface ListItem {
 const conditionalStyles = (selected: boolean, hovered: boolean) => {
   return {
     container: {
-      backgroundColor: hovered ? '#ededed' : undefined,
+      backgroundColor: hovered ? '#ededed' : undefined
     },
     listItem: {
       cursor: 'pointer',
       textDecoration: selected ? 'underline' : undefined,
-      textAlign: 'center' as 'center',
+      textAlign: 'center' as 'center'
     },
     deleteBtn: {
-      cursor: 'pointer',
-    },
+      cursor: 'pointer'
+    }
   };
 };
 

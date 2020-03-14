@@ -4,8 +4,8 @@ const styles = {
   header: {
     height: '56px',
     backgroundColor: 'navy',
-    color: 'white',
-  },
+    color: 'white'
+  }
 };
 
 const Header = () => {

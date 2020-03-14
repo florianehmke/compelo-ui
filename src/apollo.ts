@@ -6,14 +6,14 @@ import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
 
 const httpLink = new HttpLink({
-  uri: 'http://localhost:8080/v1/graphql',
+  uri: 'http://localhost:8080/v1/graphql'
 });
 
 const wsLink = new WebSocketLink({
   uri: `ws://localhost:8080/v1/graphql`,
   options: {
-    reconnect: true,
-  },
+    reconnect: true
+  }
 });
 
 const link = split(
@@ -25,7 +25,7 @@ const link = split(
     );
   },
   wsLink,
-  httpLink,
+  httpLink
 );
 
 const createApolloClient = () => {

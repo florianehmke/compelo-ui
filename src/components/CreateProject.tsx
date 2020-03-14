@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 
 import {
   CreateProjectMutation,
-  CreateProjectMutationVariables,
+  CreateProjectMutationVariables
 } from '../types/generated/graphql';
 
 const CREATE_PROJECT = gql`
@@ -32,8 +32,8 @@ const CreateProject = () => {
             e.preventDefault();
             createProject({
               variables: {
-                name: project!,
-              },
+                name: project!
+              }
             });
           }}
         >

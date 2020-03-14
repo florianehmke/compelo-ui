@@ -8,7 +8,7 @@ import {
   DeleteProjectMutation,
   DeleteProjectMutationVariables,
   ProjectsSubscription,
-  ProjectsSubscriptionVariables,
+  ProjectsSubscriptionVariables
 } from '../types/generated/graphql';
 
 export const PROJECTS_SUBSCRIPTION = gql`

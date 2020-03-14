@@ -7,7 +7,7 @@ import {
   DeletePlayerMutation,
   DeletePlayerMutationVariables,
   PlayersSubscription,
-  PlayersSubscriptionVariables,
+  PlayersSubscriptionVariables
 } from '../types/generated/graphql';
 import { PLAYERS_SUBSCRIPTION } from '../shared/gql/players-subscription';
 

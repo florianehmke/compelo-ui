@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 
 import {
   CreatePlayerMutation,
-  CreatePlayerMutationVariables,
+  CreatePlayerMutationVariables
 } from '../types/generated/graphql';
 
 const CREATE_PLAYER = gql`
@@ -37,8 +37,8 @@ const CreatePlayer = (props: Props) => {
             createPlayer({
               variables: {
                 projectId: props.projectId,
-                name: player!,
-              },
+                name: player!
+              }
             });
           }}
         >
