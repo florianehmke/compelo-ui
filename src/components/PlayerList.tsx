@@ -2,7 +2,7 @@ import React from 'react';
 import { useMutation, useSubscription } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
-import ListItem from '../components/ListItem';
+import ListItem from '../shared/ListItem';
 import {
   DeletePlayerMutation,
   DeletePlayerMutationVariables,

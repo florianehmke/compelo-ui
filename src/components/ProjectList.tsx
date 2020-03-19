@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-import ListItem from '../components/ListItem';
+import ListItem from '../shared/ListItem';
 import {
   DeleteProjectMutation,
   DeleteProjectMutationVariables,
